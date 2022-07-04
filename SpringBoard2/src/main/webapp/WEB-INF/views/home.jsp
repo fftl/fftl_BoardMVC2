@@ -1,14 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
 <h1>
-	Hello world!  
+	홈 입니다.
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<form method="POST" action="/user/login">
+	<p>ID : <input type="text" name="username"></p>
+	<p>PW : <input type="password" name="password"></p>
+	<input type="submit" value="login">
+</form>
+<p><a href="/user/create">회원가입</a></p>
 </body>
 </html>

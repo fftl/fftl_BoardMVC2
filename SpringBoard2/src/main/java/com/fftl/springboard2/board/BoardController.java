@@ -1,5 +1,8 @@
 package com.fftl.springboard2.board;
 
-public class BoardController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class BoardController {
+	
 }
