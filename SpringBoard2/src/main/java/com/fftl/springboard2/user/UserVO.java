@@ -1,12 +1,12 @@
 package com.fftl.springboard2.user;
 
-public class User {
+public class UserVO {
 
-	private Long userId;
 	private String username;
 	private String password;
 	private String nickname;
 	private String regdate;
+	private Long userId;
 	
 	public Long getUserId() {
 		return userId;
@@ -39,5 +39,9 @@ public class User {
 		this.regdate = regdate;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "UserVO [userId=" + userId + ", username=" + username + ", password=" + password + ", nickname="
+				+ nickname + ", regdate=" + regdate + "]";
+	}
 }

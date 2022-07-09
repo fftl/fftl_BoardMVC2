@@ -10,7 +10,7 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 	
 	@Override
-	public String create(User user) {
+	public String create(UserVO user) {
 		int result = this.userDao.create(user);
 		if(result == 1) {
 			String user_id = user.getUserId().toString();
@@ -21,12 +21,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public String login(User user) {
-		//같은 아이디가 두개라 오류가 발생중..
-		User findUser = this.userDao.login(user);
+	public UserVO login(UserVO user) {
+		//같은 아이디가 두개라 오류가 발생
+		UserVO findUser = this.userDao.login(user.getUsername(), user.getPassword());
 		if(findUser != null) {
-			String user_id = findUser.getUserId().toString();
-			return user_id;
+			return findUser;
 		}
 		
 		return null;

@@ -1,6 +1,6 @@
 package com.fftl.springboard2.board;
 
-public class Board {
+public class BoardVO {
 	
 	private Long boardId;
 	private String title;
@@ -58,6 +58,12 @@ public class Board {
 	}
 	public void setView(int view) {
 		this.view = view;
+	}
+	
+	@Override
+	public String toString() {
+		return "BoardVO [boardId=" + boardId + ", title=" + title + ", category=" + category + ", content=" + content
+				+ ", nickname=" + nickname + ", regdate=" + regdate + ", view=" + view + ", userId=" + userId + "]";
 	}
 	
 	

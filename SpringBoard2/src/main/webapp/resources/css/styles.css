@@ -1,0 +1,16 @@
+
+.wrap{
+	width: 80%;
+	text-align: center;
+	margin: auto;
+}
+
+.logoutBtn{
+	float: right;
+	margin-right: 30px;
+}
+
+.title{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}

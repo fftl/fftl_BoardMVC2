@@ -10,23 +10,27 @@ public class UserDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public int create(User user) {
+	public int create(UserVO user) {
 		return this.sqlSessionTemplate.insert("user.create", user);
 	}
 	
-	public User login(User user) {
-		return this.sqlSessionTemplate.selectOne("user.login", user);
+	public UserVO login(String username, String password) {
+		UserVO uv = new UserVO();
+		uv.setUsername(username);
+		uv.setPassword(password);
+		
+		return this.sqlSessionTemplate.selectOne("user.login", uv);
 	}
 	
-	public User read(User user) {
+	public UserVO read(UserVO user) {
 		return this.sqlSessionTemplate.selectOne("user.read", user);
 	}
 
-	public int update(User user) {
+	public int update(UserVO user) {
 		return this. sqlSessionTemplate.update("user.update", user);
 	}
 	
-	public int delete(User user) {
+	public int delete(UserVO user) {
 		return this. sqlSessionTemplate.delete("user.delete", user);
 	}
 }

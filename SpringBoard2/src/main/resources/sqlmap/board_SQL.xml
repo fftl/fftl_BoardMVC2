@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-
+	
+	<resultMap id="Boards" type="com.fftl.springboard2.board.BoardVO">
+		<result property= "boardId" column ="board_id"/>
+		<result property= "title" column ="title"/>
+		<result property= "category" column ="category"/>
+		<result property= "content" column ="content"/>
+		<result property= "nickname" column ="nickname"/>
+		<result property= "regdate" column ="regdate"/>
+		<result property= "view" column ="view"/>
+		<result property= "userId" column ="user_id"/>		
+	</resultMap>	
+	
+	<insert id="create" parameterType="com.fftl.springboard2.board.BoardVO" useGeneratedKeys="true" keyProperty="boardId">
+		<![CDATA[
+			insert into board
+			(title, content, nickname, category, view, user_id)
+			values
+			(#{title}, #{content}, #{nickname}, #{category}, 0, #{userId});
+		]]>
+	</insert>
+	
+	<select id="read_detail" parameterType="Long" resultMap="Boards">
+		<![CDATA[
+			select *
+			from board
+			where board_id = #{boardId};
+		]]>
+	</select>
+	
+	<select id="read_all" parameterType="com.fftl.springboard2.board.BoardVO" resultMap="Boards">
+		<![CDATA[
+			select *
+			from board;
+		]]>
+	</select>
+	
+	<select id="login" parameterType="com.fftl.springboard2.user.UserVO" resultType="com.fftl.springboard2.user.UserVO">
+		<![CDATA[
+			select *
+			from user
+			where username=#{username} and password=#{password};
+		]]>
+	</select>
+	
+	<update id="update" parameterType="com.fftl.springboard2.user.UserVO">
+		<![CDATA[
+			update user
+			set username = #{username}, password = #{password}, nickname = #{nickname}
+			where user_id = #{userId};
+		]]>
+	</update>
+	
+	<delete id="delete" parameterType="com.fftl.springboard2.user.UserVO">
+		<![CDATA[
+			delete user
+			where user_id = #{userId};
+		]]>
+	</delete>
+	
 </mapper>

@@ -2,8 +2,8 @@ package com.fftl.springboard2.user;
 
 public interface UserService {
 
-	String create(User user);
+	String create(UserVO user);
 
-	String login(User user);
+	UserVO login(UserVO user);
 	
 }

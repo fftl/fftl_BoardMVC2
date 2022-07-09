@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
+
+	<resultMap id="Users" type="com.fftl.springboard2.user.UserVO">
+		<result property= "userId" column ="user_id"/>
+		<result property= "username" column ="username"/>
+		<result property= "password" column ="password"/>
+		<result property= "nickname" column ="nickname"/>
+	</resultMap>
 	
-	<insert id="create" parameterType="com.fftl.springboard2.user.User" useGeneratedKeys="true" keyProperty="userId">
+	<insert id="create" parameterType="com.fftl.springboard2.user.UserVO" useGeneratedKeys="true" keyProperty="userId">
 		<![CDATA[
 			insert into user
 			(username, password, nickname)
@@ -11,7 +18,7 @@
 		]]>
 	</insert>
 	
-	<select id="read" parameterType="com.fftl.springboard2.user.User" resultType="com.fftl.springboard2.user.User">
+	<select id="read" parameterType="com.fftl.springboard2.user.UserVO" resultMap="Users">
 		<![CDATA[
 			select *
 			from user
@@ -19,7 +26,7 @@
 		]]>
 	</select>
 	
-	<select id="login" parameterType="com.fftl.springboard2.user.User" resultType="com.fftl.springboard2.user.User">
+	<select id="login" parameterType="com.fftl.springboard2.user.UserVO" resultMap="Users">
 		<![CDATA[
 			select *
 			from user
@@ -27,7 +34,7 @@
 		]]>
 	</select>
 	
-	<update id="update" parameterType="com.fftl.springboard2.user.User">
+	<update id="update" parameterType="com.fftl.springboard2.user.UserVO">
 		<![CDATA[
 			update user
 			set username = #{username}, password = #{password}, nickname = #{nickname}
@@ -35,7 +42,7 @@
 		]]>
 	</update>
 	
-	<delete id="delete" parameterType="com.fftl.springboard2.user.User">
+	<delete id="delete" parameterType="com.fftl.springboard2.user.UserVO">
 		<![CDATA[
 			delete user
 			where user_id = #{userId};
