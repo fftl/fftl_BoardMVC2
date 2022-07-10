@@ -23,5 +23,13 @@ public class BoardDao {
 	public BoardVO readDetail(Long boardId) {
 		return this.sqlSessionTemplate.selectOne("board.read_detail", boardId);
 	}
+	
+	public int boardUpdate(BoardVO boardVO) {
+		return this.sqlSessionTemplate.update("board.update", boardVO);
+	}
+	
+	public int boardUpdateView(Long boardId) {
+		return this.sqlSessionTemplate.update("board.update_view", boardId);
+	}
 
 }

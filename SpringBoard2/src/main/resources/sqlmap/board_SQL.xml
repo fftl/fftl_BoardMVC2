@@ -37,26 +37,26 @@
 		]]>
 	</select>
 	
-	<select id="login" parameterType="com.fftl.springboard2.user.UserVO" resultType="com.fftl.springboard2.user.UserVO">
+	<update id="update" parameterType="com.fftl.springboard2.board.BoardVO">
 		<![CDATA[
-			select *
-			from user
-			where username=#{username} and password=#{password};
-		]]>
-	</select>
-	
-	<update id="update" parameterType="com.fftl.springboard2.user.UserVO">
-		<![CDATA[
-			update user
-			set username = #{username}, password = #{password}, nickname = #{nickname}
-			where user_id = #{userId};
+			update board
+			set title = #{title}, content = #{content}
+			where board_id = #{boardId};
 		]]>
 	</update>
 	
-	<delete id="delete" parameterType="com.fftl.springboard2.user.UserVO">
+	<update id="update_view" parameterType="Long">
 		<![CDATA[
-			delete user
-			where user_id = #{userId};
+			update board
+			set view = view+1
+			where board_id = #{boardId};
+		]]>
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		<![CDATA[
+			delete board
+			where board_id = #{boardId};
 		]]>
 	</delete>
 	

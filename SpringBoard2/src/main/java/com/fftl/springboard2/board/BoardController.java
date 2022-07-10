@@ -22,7 +22,7 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping("/list")
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView readAllBoard(@ModelAttribute BoardVO board) {
 		ModelAndView mav = new ModelAndView();
 		List<BoardVO> boards = this.boardService.readAllBoard();
@@ -31,7 +31,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/create")
+	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public ModelAndView create(@ModelAttribute BoardVO board) {
 		ModelAndView mav = new ModelAndView();
 		List<BoardVO> boards = this.boardService.readAllBoard();
@@ -54,10 +54,31 @@ public class BoardController {
 	public ModelAndView detail(@PathVariable Long boardId) {
 		ModelAndView mav = new ModelAndView();
 		BoardVO boardVO = this.boardService.readDetail(boardId);
+		this.boardService.boardUpdateView(boardId);
 		
 		if(boardVO != null) {
 			mav.addObject("data", boardVO);
 			mav.setViewName("/board/detail");
+		};
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/update/{boardId}", method=RequestMethod.GET)
+	public ModelAndView update(@PathVariable Long boardId) {
+		ModelAndView mav = new ModelAndView();
+		BoardVO boardVO = this.boardService.readDetail(boardId);
+		mav.addObject("data", boardVO);
+		mav.setViewName("/board/update");
+		return mav;
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public ModelAndView updateBoard(@ModelAttribute BoardVO boardVO) {
+		ModelAndView mav = new ModelAndView();
+		int n = this.boardService.boardUpdate(boardVO);
+		if(n>0) {
+			mav.setViewName("redirect:/board/list");
 		};
 		
 		return mav;

@@ -26,4 +26,14 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardDao.readDetail(boardId);
 	}
 
+	@Override
+	public int boardUpdate(BoardVO boardVO) {
+		return this.boardDao.boardUpdate(boardVO);
+	}
+
+	@Override
+	public int boardUpdateView(Long boardId) {
+		return this.boardDao.boardUpdateView(boardId);
+	}
+
 }
